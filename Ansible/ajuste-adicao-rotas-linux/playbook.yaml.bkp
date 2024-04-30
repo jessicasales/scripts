@@ -1,0 +1,24 @@
+- hosts: 'teste'
+
+  tasks:
+  - name: Ler o conteúdo atual do arquivo 00-installer-config.yaml
+    slurp:
+      src: /etc/netplan/00-installer-config.yaml
+    register: installer_config_content
+
+  - name: Decodificar o conteúdo do arquivo 00-installer-config.yaml
+    set_fact:
+      installer_config_decoded: "{{ installer_config_content['content'] | b64decode }}"
+
+  - name: Adicionar nova rota ao bloco routes
+    lineinfile:
+      path: /etc/netplan/00-installer-config.yaml
+      insertafter: "^routes:$"
+      line: "        - to: 10.26.4.0/22\n          via: 10.230.32.35"
+      state: present
+      regexp: "^\s+- to:.*$"
+
+  - name: Aplicar alterações feitas no arquivo 00-installer-config.yaml
+    shell: netplan apply
+
+

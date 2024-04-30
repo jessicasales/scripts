@@ -1,0 +1,10 @@
+- hosts: 'teste'
+
+  tasks:
+  - name: 'INSERINDO ROUTES NO ARQUIVO DE CONFIGURAÇÃO DE REDE'
+    shell: |
+      sed -i '/routes:/a \ \ \ \ \ \ \ \ - to: 10.26.4.0/22\n\ \ \ \ \ \ \ \ \ \ via: 10.230.32.35' /etc/netplan/00-installer-config.yaml
+
+  - name: 'NETPLAN APPLY'
+    shell: netplan apply
+

@@ -1,0 +1,7 @@
+- hosts: 'hosts-dev'
+
+  tasks:
+  - name: 'Remover serviço Apache'
+    shell: |
+      sudo apt purge apache2 apache2-utils
+      sudo apt autoremove

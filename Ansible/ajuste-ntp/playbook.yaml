@@ -1,0 +1,13 @@
+- hosts: 'hosts-dev'
+
+  tasks:
+  - name: 'Atualizar horário com NTP Prodemge'
+    shell: |
+      sed -i 's/#NTP=/NTP=ntp.prodemge.gov.br/' /etc/systemd/timesyncd.conf
+      sed -i 's/#FallbackNTP=ntp.ubuntu.com/FallbackNTP=ntp.ubuntu.com/' /etc/systemd/timesyncd.conf
+      sudo systemctl restart systemd-timesyncd.service
+
+
+
+
+
