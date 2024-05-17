@@ -1,0 +1,32 @@
+#!/bin/bash
+#Este script foi escrito para analisar portas que estão na escuta e fazer a liberação das mesmas no firewall da máquina (UFW)
+
+echo "##############################################################"
+echo "######## Permissão de portas no firewall da máquina ##########"
+echo "##############################################################"
+echo ""
+echo "Fazendo mapeamento de portas na escuta..."
+echo ""
+
+PORTAS=$(ss -nlpt | awk '{print $4}' | grep -oP ':\K[0-9]+')
+echo $PORTAS
+echo ""
+echo "##############################################################"
+
+echo "Ativando o firewall da máquina"
+sudo ufw --force enable
+
+echo "##############################################################"
+echo ""
+echo "###################### LIBERANDO PORTAS ######################"
+
+for PORTA in $PORTAS; do
+    ufw allow "$PORTA"
+    echo "A porta $PORTA foi liberada"
+    echo "------"
+done
+
+echo "Configuração concluída :)"
+echo ""
+echo "Assim ficou a nova configuração do firewall:"
+ufw status
