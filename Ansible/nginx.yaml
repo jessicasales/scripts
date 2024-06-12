@@ -1,0 +1,20 @@
+- hosts: nodesnginx
+  tasks:
+  
+  - name: Liberando a porta no firewall - Node Nginx
+    ufw:
+      rule: allow
+      port: ''
+      proto: tcp
+
+  - name: Ativando firewall da máquina - Node Nginx
+    shell: |
+            if ufw status | grep -q 'Status: active'; then
+            echo "Firewall já está ativado."
+            else
+            echo "Ativando firewall da máquina"
+            yes | ufw enable
+            ufw status
+            fi
+
+

@@ -1,0 +1,49 @@
+- hosts: nodesactivemq
+  tasks:
+  
+  - name: Liberando a porta no firewall - Máquina Node ActiveMQ
+    ufw:
+      rule: allow
+      port: '8161'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node ActiveMQ
+    ufw:
+      rule: allow
+      port: '61616'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node ActiveMQ
+    ufw:
+      rule: allow
+      port: '5445'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node ActiveMQ
+    ufw:
+      rule: allow
+      port: '5672'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node ActiveMQ
+    ufw:
+      rule: allow
+      port: '61613'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node ActiveMQ
+    ufw:
+      rule: allow
+      port: '1883'
+      proto: tcp
+
+  - name: Ativando firewall da máquina - Máquina Node ActiveMQ
+    shell: |
+            if ufw status | grep -q 'Status: active'; then
+            echo "Firewall já está ativado."
+            else
+            echo "Ativando firewall da máquina"
+            yes | ufw enable
+            ufw status
+            fi
+

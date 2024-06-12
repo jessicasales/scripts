@@ -1,0 +1,29 @@
+- hosts: nodesfront
+  tasks:
+  
+  - name: Liberando range de portas 4400:4700 no firewall - Máquina Node Front
+    ufw:
+      rule: allow
+      port: '4400:4700'
+      proto: tcp
+
+  - name: Liberando range de portas 8050:8700 no firewall - Máquina Node Front
+    ufw:
+      rule: allow
+      port: '8050:8700'
+      proto: tcp
+  
+  - name: Ativando firewall da máquina - Máquina Node Front
+    shell: |
+            if ufw status | grep -q 'Status: active'; then
+            echo "Firewall já está ativado."
+            else
+            echo "Ativando firewall da máquina"
+            yes | ufw enable
+            ufw status
+            fi
+   
+
+
+
+
