@@ -1,0 +1,48 @@
+- hosts: nodesrabbitmq
+  tasks:
+  
+  - name: Liberando a porta no firewall - Node RabbitMQ
+    ufw:
+      rule: allow
+      port: '1883'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node RabbitMQ
+    ufw:
+      rule: allow
+      port: '5671'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node RabbitMQ
+    ufw:
+      rule: allow
+      port: '5672'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node RabbitMQ
+    ufw:
+      rule: allow
+      port: '15672'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node RabbitMQ
+    ufw:
+      rule: allow
+      port: '15675'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node RabbitMQ
+    ufw:
+      rule: allow
+      port: '15678'
+      proto: tcp
+
+  - name: Ativando firewall da máquina - Node RabbitMQ
+    shell: |
+            if ufw status | grep -q 'Status: active'; then
+            echo "Firewall já está ativado."
+            else
+            echo "Ativando firewall da máquina"
+            yes | ufw enable
+            ufw status
+            fi

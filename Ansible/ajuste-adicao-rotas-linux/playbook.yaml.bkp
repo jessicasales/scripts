@@ -14,7 +14,7 @@
     lineinfile:
       path: /etc/netplan/00-installer-config.yaml
       insertafter: "^routes:$"
-      line: "        - to: 10.26.4.0/22\n          via: 10.230.32.35"
+      line: "        - to: 10.20.30.40/22\n          via: 10.100.0.50"
       state: present
       regexp: "^\s+- to:.*$"
 

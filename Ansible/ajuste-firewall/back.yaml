@@ -1,0 +1,66 @@
+- hosts: nodesback
+  tasks:
+
+  - name: Liberando range de portas 8000:8100 no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '8000:8100'
+      proto: tcp  
+
+  - name: Liberando range de portas 9600:9999 no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '9600:9999'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '18520'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '17853'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '17852'
+      proto: tcp
+    
+  - name: Liberando a porta no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '17589'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '17969'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '10001'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Máquina Node Back
+    ufw:
+      rule: allow
+      port: '1485'
+      proto: tcp
+
+  - name: Ativando firewall da máquina - Máquina Node Back
+    shell: |
+            if ufw status | grep -q 'Status: active'; then
+            echo "Firewall já está ativado."
+            else
+            echo "Ativando firewall da máquina"
+            yes | ufw enable
+            ufw status
+            fi

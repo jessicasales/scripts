@@ -1,0 +1,55 @@
+- hosts: nodespatroni
+  tasks:
+  
+  - name: Liberando a porta no firewall - Node Patroni
+    ufw:
+      rule: allow
+      port: '5432'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node Patroni
+    ufw:
+      rule: allow
+      port: '5060'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node Patroni
+    ufw:
+      rule: allow
+      port: '2379'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node Patroni
+    ufw:
+      rule: allow
+      port: '2380'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node Patroni
+    ufw:
+      rule: allow
+      port: '5001'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node Patroni
+    ufw:
+      rule: allow
+      port: '7000'
+      proto: tcp
+
+  - name: Liberando a porta no firewall - Node Patroni
+    ufw:
+      rule: allow
+      port: '8008'
+      proto: tcp
+
+  - name: Ativando firewall da máquina - Node Patroni
+    shell: |
+            if ufw status | grep -q 'Status: active'; then
+            echo "Firewall já está ativado."
+            else
+            echo "Ativando firewall da máquina"
+            yes | ufw enable
+            ufw status
+            fi
+

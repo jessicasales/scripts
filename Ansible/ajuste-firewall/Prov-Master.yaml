@@ -1,0 +1,10 @@
+---
+#- include: nginx.yaml
+- include: back.yaml
+- include: front.yaml
+- include: nginx.yaml
+- include: patroni.yaml
+- include: mongo.yaml
+- include: activemq.yaml
+- include: rabbitmq.yaml
+- include: redis.yaml
