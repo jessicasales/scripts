@@ -1,0 +1,10 @@
+- hosts: 'all-hosts'
+
+  tasks:
+  - name: Cria tarefa de limpeza diária no Cron 
+    ansible.builtin.cron:
+      name: "Limpa arquivos /var/log/postgresql"
+      minute: "5"
+      hour: "1"
+      user: root
+      job: find "/var/log/postgresql" -type f -mtime +10 -name "postgresql-*" -exec rm -f {} \;
