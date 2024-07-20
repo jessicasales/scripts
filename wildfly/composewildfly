@@ -1,0 +1,19 @@
+#!/bin/bash
+#Escrito por: Jéssica Sales
+version: "3.3"
+services:
+  nome_container:
+    hostname: nome_container
+    container_name: nome_container
+    build:
+      context: .
+    ports:
+      - "7095:8080"
+      - "8885:9990"
+    restart: always
+    volumes:
+        - /var/log_wildfly/nome_container:/opt/jboss/wildfly/standalone/log
+        - ./properties.sh:/opt/jboss/wildfly/properties.sh
+    env_file:
+      - ./environment.env
+    entrypoint: ["/bin/bash", "/opt/jboss/wildfly/propertieswildfly.sh"] 

@@ -4,8 +4,14 @@
   - name: Liberando a porta no firewall - Node Mongo
     ufw:
       rule: allow
-      port: '27017'
+      port: "{{ item }}"
       proto: tcp
+    loop: 
+    - 27017
+    - 27119
+    - 27120
+    - 27121
+    - 27122
 
   - name: Ativando firewall da máquina - Node Mongo
     shell: |

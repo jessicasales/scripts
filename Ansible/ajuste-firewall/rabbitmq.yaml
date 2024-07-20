@@ -4,38 +4,15 @@
   - name: Liberando a porta no firewall - Node RabbitMQ
     ufw:
       rule: allow
-      port: '1883'
+      port: "{{ item }}"
       proto: tcp
-
-  - name: Liberando a porta no firewall - Node RabbitMQ
-    ufw:
-      rule: allow
-      port: '5671'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node RabbitMQ
-    ufw:
-      rule: allow
-      port: '5672'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node RabbitMQ
-    ufw:
-      rule: allow
-      port: '15672'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node RabbitMQ
-    ufw:
-      rule: allow
-      port: '15675'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node RabbitMQ
-    ufw:
-      rule: allow
-      port: '15678'
-      proto: tcp
+    loop:
+    - 1883
+    - 5671
+    - 5672
+    - 15672
+    - 15675
+    - 15678
 
   - name: Ativando firewall da máquina - Node RabbitMQ
     shell: |

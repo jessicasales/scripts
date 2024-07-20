@@ -4,44 +4,16 @@
   - name: Liberando a porta no firewall - Node Patroni
     ufw:
       rule: allow
-      port: '5432'
+      port: "{{ item }}"
       proto: tcp
-
-  - name: Liberando a porta no firewall - Node Patroni
-    ufw:
-      rule: allow
-      port: '5060'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node Patroni
-    ufw:
-      rule: allow
-      port: '2379'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node Patroni
-    ufw:
-      rule: allow
-      port: '2380'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node Patroni
-    ufw:
-      rule: allow
-      port: '5001'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node Patroni
-    ufw:
-      rule: allow
-      port: '7000'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node Patroni
-    ufw:
-      rule: allow
-      port: '8008'
-      proto: tcp
+    loop: 
+    - 5432
+    - 5060
+    - 2379
+    - 2380
+    - 5001
+    - 7000
+    - 8008
 
   - name: Ativando firewall da máquina - Node Patroni
     shell: |

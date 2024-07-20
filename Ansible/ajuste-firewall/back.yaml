@@ -16,44 +16,16 @@
   - name: Liberando a porta no firewall - Máquina Node Back
     ufw:
       rule: allow
-      port: '18520'
+      port: "{{ item }}"
       proto: tcp
-
-  - name: Liberando a porta no firewall - Máquina Node Back
-    ufw:
-      rule: allow
-      port: '17853'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Máquina Node Back
-    ufw:
-      rule: allow
-      port: '17852'
-      proto: tcp
-    
-  - name: Liberando a porta no firewall - Máquina Node Back
-    ufw:
-      rule: allow
-      port: '17589'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Máquina Node Back
-    ufw:
-      rule: allow
-      port: '17969'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Máquina Node Back
-    ufw:
-      rule: allow
-      port: '10001'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Máquina Node Back
-    ufw:
-      rule: allow
-      port: '1485'
-      proto: tcp
+    loop:
+    - 18520
+    - 17852
+    - 17853
+    - 17589
+    - 17969
+    - 10001
+    - 1485
 
   - name: Ativando firewall da máquina - Máquina Node Back
     shell: |

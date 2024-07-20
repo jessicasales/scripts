@@ -4,20 +4,12 @@
   - name: Liberando a porta no firewall - Node Redis
     ufw:
       rule: allow
-      port: '6379'
+      port: "{{ item }}"
       proto: tcp
-
-  - name: Liberando a porta no firewall - Node Redis
-    ufw:
-      rule: allow
-      port: '6380'
-      proto: tcp
-
-  - name: Liberando a porta no firewall - Node Redis
-    ufw:
-      rule: allow
-      port: '6381'
-      proto: tcp
+    loop:
+    - 6379
+    - 6380
+    - 6381
 
   - name: Ativando firewall da máquina - Node Redis
     shell: |
