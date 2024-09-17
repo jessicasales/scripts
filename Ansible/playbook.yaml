@@ -1,0 +1,20 @@
+#by: Jéssica Sales
+#Documentação: https://support.kaspersky.com/KSCLinux/14/en-US/199693.htm
+
+- hosts: 'teste'
+
+  tasks:
+  - name: 'BAIXANDO AGENTE KASPERSKY'
+    shell: wget --progress=bar:force https://products.s.kaspersky-labs.com/administrationkit/ksc10/15.1.0.11795/english-19260948-en/3837363732347c44454c7c31/klnagent64_15.1.0-11795_amd64.deb
+    ignore_errors: yes
+    
+  - name: 'COPIANDO CONF PRA PASTA'
+    copy:
+      src: autoanswers.txt
+      dest: /tmp/autoanswers.txt
+  
+  - name: 'INSTALANDO KASPERSKY'  
+    shell: |
+            export KLAUTOANSWERS=/tmp/autoanswers.txt
+            find / -type f -name "klnagent64*.deb"; apt-get install ./klnagent64_*_amd64.deb
+
