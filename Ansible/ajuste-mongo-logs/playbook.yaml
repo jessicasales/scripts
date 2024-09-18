@@ -1,0 +1,28 @@
+- hosts: 'teste'
+
+  tasks:
+  - name: "Adicionando arquivo daemon.json"
+    copy:
+      content: |
+                {
+                  "log-driver": "json-file",
+                  "log-opts": {
+                    "max-size": "1024m",
+                    "max-file": "3"
+                  }
+                }
+      dest: /etc/docker/daemon.json
+
+  - name: Copiar o script para o host
+    copy:
+      src: ./scripttemp.sh
+      dest: /home/transferencias-dev/scripttemp.sh
+      mode: '0755'
+
+  - name: Executar o script
+    shell: /home/transferencias-dev/scripttemp.sh
+
+  - name: Removendo script temporário
+    ansible.builtin.file:
+      path: /home/transferencias-dev/scripttemp.sh
+      state: absent
